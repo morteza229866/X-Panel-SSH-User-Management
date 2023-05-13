@@ -97,16 +97,16 @@ done
         ${PACKAGE_INSTALL[int]} lsof
     fi
     
-    yellow "Checking if the port 80 is in use..."
+    yellow "Checking if the port 8088 is in use..."
     sleep 1
     
-    if [[  $(lsof -i:"80" | grep -i -c "listen") -eq 0 ]]; then
+    if [[  $(lsof -i:"8088" | grep -i -c "listen") -eq 0 ]]; then
         green "Good! Port 80 is not in use"
         sleep 1
     else
-        red "Port 80 is currently in use, please close the service this service, which is using port 80:"
-        lsof -i:"80"
-            lsof -i:"80" | awk '{print $2}' | grep -v "PID" | xargs kill -9
+        red "Port 8088 is currently in use, please close the service this service, which is using port 80:"
+        lsof -i:"8088"
+            lsof -i:"8088" | awk '{print $2}' | grep -v "PID" | xargs kill -9
             sleep 1
         
     fi
@@ -124,7 +124,7 @@ done
     ipv6=$(curl -s6m8 ip.gs)
     
     echo ""
-    yellow "When using port 80 application mode, first point your domain name to your server's public IP address. Otherwise the certificate application will be failed!"
+    yellow "When using port 8088 application mode, first point your domain name to your server's public IP address. Otherwise the certificate application will be failed!"
     echo ""
     if [[ -n $ipv4 && -n $ipv6 ]]; then
         echo -e "The public IPv4 address of server is: ${GREEN} $ipv4 ${PLAIN}"
